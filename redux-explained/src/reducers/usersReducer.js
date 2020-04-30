@@ -1,0 +1,1 @@
+// A reducer is a fancy switch statement that takes in the current state, makes a change (using an action), and spits out a NEW INSTANCE of the state. Type indicates which action to use, payload is the change that will be implemented. 
