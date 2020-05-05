@@ -9,8 +9,6 @@
 - redux
 - redux-logger
 - redux-thunk
-### React extras
-- react-router-dom
 ### For the API
 - axios
 
