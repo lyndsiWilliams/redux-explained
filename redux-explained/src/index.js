@@ -6,6 +6,8 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
+// Reducer
+import { usersReducer } from './reducers/usersReducer';
 // Styling
 import './index.css';
 // Component
@@ -14,12 +16,15 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 
-const store = createStore()
+// The store uses the createStore function to create your redux store
+// It takes in (reducer, middleware) as parameters
+const store = createStore(usersReducer, applyMiddleware(thunk, logger));
+// logger must always be the final middleware passed into applyMiddleWare
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
@@ -39,8 +44,21 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
+import { usersReducer } from './reducers/usersReducer';
+
 
 - Step 2 -
-Create the store (see line 17)
+Create the store passing your reducer and middleware as parameters
+(see line 21)
+
+
+- Step 3 -
+Wrap the <App /> with <Provider></Provider>
+Pass the store into the Provider as props
+
+
+- Step 4 -
+Congratulations! You now have created the redux store!
+Now we create an app to display our data. Head over to App.js for the next step!
 
 */

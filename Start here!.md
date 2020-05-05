@@ -13,16 +13,14 @@
 - react-router-dom
 # For the API
 - axios
-# Styling
-- bootstrap
-- reactstrap
 
 ## Set up the app structure
 
 # Create an 'actions' folder in the 'src' folder
-- Create and 'index.js' folder to hold your actions
+- Create an 'index.js' folder to hold your actions
 
 # Create a 'reducers' folder in the 'src' folder
 - Create a descriptively-named reducer file (usersReducer.js)
 
-# Create redux store in index.js
+# Create redux store in src/index.js
+- See src/index.js for more details!
