@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 // Reducer
-import { usersReducer } from './reducers/usersReducer';
+import { rootReducer } from './reducers';
 // Styling
 import './index.css';
 // Component
@@ -18,7 +18,7 @@ import * as serviceWorker from './serviceWorker';
 
 // The store uses the createStore function to create your redux store
 // It takes in (reducer, middleware) as parameters
-const store = createStore(usersReducer, applyMiddleware(thunk, logger));
+const store = createStore(rootReducer, applyMiddleware(thunk, logger));
 // logger must always be the final middleware passed into applyMiddleWare
 
 ReactDOM.render(
