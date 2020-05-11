@@ -17,7 +17,7 @@ const initialState = {
 
 // Now for our fancy switch statement! Remember: A reducer is a function that takes in (state, action) as parameters. You'll go ahead and set the state in the parameter to the initialState object you created above.
 // Create a descriptive reducer name for this function
-export function usersReducer(state=initialState, action) {
+export function getReducer(state=initialState, action) {
   // The switch statement will be determining the case by looking at the action type
   switch (action.type) {
     // Case 1: Start! This takes in the current state, returns no error, and notifies us that the action has begun the fetching process (axios.get) by updating 'isFetching' to true

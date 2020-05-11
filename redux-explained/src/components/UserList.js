@@ -2,7 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-// Action
+// Actions
 import { getUsers } from '../actions';
 
 
@@ -14,6 +14,7 @@ const UserList = props => {
   const handleEdit = id => {
     history.push(`/edit/${id}`);
   };
+
 
   return (
     <div>

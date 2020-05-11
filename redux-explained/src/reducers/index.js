@@ -1,7 +1,12 @@
 import { combineReducers } from 'redux';
-import { usersReducer } from './usersReducer';
+// Actions
+import { getReducer } from './getReducer';
+import { postReducer } from './postReducer';
+import { putDelReducer } from './putDelReducer';
 
 
 export const rootReducer = combineReducers({
-  usersReducer
+  getReducer,
+  postReducer,
+  putDelReducer
 });
