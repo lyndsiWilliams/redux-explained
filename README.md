@@ -15,11 +15,11 @@
 
 ## Set up the app structure
 
-### Create an 'actions' folder in the 'src' folder
-- Create an 'index.js' file to hold your actions
+1. Create an 'actions' folder in the 'src' folder
+  - Create an 'index.js' file to hold your actions
 
-### Create a 'reducers' folder in the 'src' folder
-- Create an 'index.js' file and a descriptively-named reducer file (usersReducer.js)
+2. Create a 'reducers' folder in the 'src' folder
+  - Create an 'index.js' file and a descriptively-named reducer file (usersReducer.js)
 
-### Create redux store in src/index.js
-- See src/index.js for more details!
+3. Create redux store in src/index.js
+  - See src/index.js for more details!
