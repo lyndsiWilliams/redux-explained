@@ -4,7 +4,12 @@
 import {
   FETCH_USERS_START,
   FETCH_USERS_SUCCESS,
-  FETCH_USERS_FAILURE
+  FETCH_USERS_FAILURE,
+  ADD_USER_START,
+  ADD_USER_SUCCESS,
+  ADD_USER_FAILURE,
+  EDIT_USER,
+  DELETE_USER
 } from '../actions';
 
 // Create your initial state. This is your "start" state, a blank slate ready for information to be loaded onto it. Make sure the data in your initial state matches the data you'll be loading onto it - 'users' needs a blank array to load the array of user objects, 'error' needs a blank string to return an error string, 'isFetching' is a boolean and it needs to be set in the "starting" state (false)
@@ -17,7 +22,7 @@ const initialState = {
 
 // Now for our fancy switch statement! Remember: A reducer is a function that takes in (state, action) as parameters. You'll go ahead and set the state in the parameter to the initialState object you created above.
 // Create a descriptive reducer name for this function
-export function getReducer(state=initialState, action) {
+export function usersReducer(state=initialState, action) {
   // The switch statement will be determining the case by looking at the action type
   switch (action.type) {
     // Case 1: Start! This takes in the current state, returns no error, and notifies us that the action has begun the fetching process (axios.get) by updating 'isFetching' to true
@@ -40,6 +45,36 @@ export function getReducer(state=initialState, action) {
       return {
         ...state,
         error: action.payload,
+        isFetching: false
+      }
+    case ADD_USER_START:
+      return {
+        ...state,
+        isFetching: true
+      }
+    case ADD_USER_SUCCESS:
+      return {
+        ...state,
+        users: [...state.users, action.payload],
+        isFetching: false
+      }
+    case ADD_USER_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        isFetching: false
+      }
+    case EDIT_USER:
+      const uneditedUsers = state.users.filter(item => item.id !== action.payload.id);
+      return {
+        ...state,
+        users: [...uneditedUsers, action.payload.editedUser]
+      }
+    case DELETE_USER:
+      return {
+        ...state,
+        users: state.users.filter(item => item.id !== action.payload),
+        error: "",
         isFetching: false
       }
     // If none of the cases are triggered in this reducer, it will return the state untouched
