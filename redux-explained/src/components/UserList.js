@@ -3,7 +3,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 // Actions
-import { getUsers } from '../actions';
+import { getUsers, addUser, editUser, deleteUser } from '../actions';
+// Component
+import UserForm from './UserForm';
 
 
 // Pass props into the component to bring in the redux state
@@ -15,15 +17,20 @@ const UserList = props => {
     history.push(`/edit/${id}`);
   };
 
+  const handleDelete = id => {
+    props.deleteUser(id);
+  }
+
 
   return (
     <div>
+      <UserForm addUser={props.addUser} />
       <button onClick={props.getUsers}>Fetch Users (GET)</button>
       {props.users && !props.isFetching && props.users.map(users => (
         <div key={users.id}>
-          <p>{users.first_name} {users.last_name}</p>
-          <button>Edit (PUT)</button>
-          <button>Delete (DELETE)</button>
+          <p>{users.first_name}</p>
+          <button onClick={() => handleEdit(users.id)}>Edit (PUT)</button>
+          <button onClick={() => handleDelete(users.id)}>Delete (DELETE)</button>
         </div>
       ))}
     </div>
@@ -31,15 +38,15 @@ const UserList = props => {
 };
 
 const mapStateToProps = state => ({
-  users: state.users,
-  error: state.error,
-  isFetching: state.isFetching
+  users: state.usersReducer.users,
+  error: state.usersReducer.error,
+  isFetching: state.usersReducer.isFetching
 });
 
 
 export default connect (
   mapStateToProps,
-  { getUsers }
+  { getUsers, addUser, editUser, deleteUser }
 )(UserList);
 
 
