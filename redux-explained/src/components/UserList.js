@@ -1,20 +1,23 @@
 // React
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 // Actions
 import { getUsers, addUser, editUser, deleteUser } from '../actions';
 // Component
 import UserForm from './UserForm';
+import UserEdit from './UserEdit';
 
 
 // Pass props into the component to bring in the redux state
 const UserList = props => {
   console.log("Props in UserList.js:", props)
+  
+  const [editClick, setEditClick] = useState(false)
+  const [editForm, setEditForm] = useState()
 
-  let history = useHistory();
   const handleEdit = id => {
-    history.push(`/edit/${id}`);
+    setEditClick(true);
+    setEditForm(<UserEdit id={id} />)
   };
 
   const handleDelete = id => {
@@ -33,6 +36,8 @@ const UserList = props => {
           <button onClick={() => handleDelete(users.id)}>Delete (DELETE)</button>
         </div>
       ))}
+      <br /><br />
+      {editClick ? editForm : null}
     </div>
   );
 };
